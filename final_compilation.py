@@ -86,11 +86,11 @@ for param in groundwater_params:
     print(f"{param}:\n")
     print(f"Test Set MSE: {mse:.2f}, Test Set R-squared: {r2:.2f}")
     print(f"Coefficient (Slope): {coefficient:.3f}")
-    print(f"Intercept: {intercept:.3f}")
-    print(f"Equation: {param} = {coefficient:.3f} * Rainfall + {intercept:.3f}")
+    print(f"Intercept: {intercept:.3f}\n")
+    print(f"{param} = Coefficient * Rainfall + Intercept")
     
     param_rainfall_values = X_test.values
-    print(f'Rainfall Test Values: {X_test.values[0]}mm, {X_test.values[1]}mm and {X_test.values[2]}mm')
+    print(f"Rainfall Test Years' data: {X_test.values[0]}mm, {X_test.values[1]}mm and {X_test.values[2]}mm")
     
     calculated_params = coefficient * param_rainfall_values  + intercept
     print(f"Calculated {param}:")
@@ -101,3 +101,9 @@ for param in groundwater_params:
     print()  # Print a newline after each parameter loop
     print('------------------------')  # Print a newline after each parameter loop
   
+  
+  
+# Github link:
+# https://github.com/Vix1209/Impact-of-rainfall-on-grndwater-parameters
+
+
