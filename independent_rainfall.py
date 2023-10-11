@@ -26,6 +26,7 @@ rainfall_data = {
 combined_data = pd.merge(pd.DataFrame(groundwater_data), pd.DataFrame(rainfall_data), on='Year')
 
 
+
 # Calculate correlation matrix
 correlation_matrix = combined_data.corr()
 
@@ -37,11 +38,11 @@ plt.title("Correlation Heatmap")
 plt.show()
 
 
-# Create scatter plots for each groundwater parameter
+# Create line plots for each groundwater parameter
 parameters = combined_data.columns[1:-1]  # Exclude 'Year' and 'Rainfall'
 for param in parameters:
     plt.figure(figsize=(8, 6))
-    sns.scatterplot(x=combined_data['Rainfall'], y=combined_data[param])
+    sns.lineplot(x=combined_data['Rainfall'], y=combined_data[param])
     plt.xlabel("Rainfall")
     plt.ylabel(param)
     plt.title(f"Relationship between Rainfall and {param}")
@@ -79,8 +80,9 @@ for param in groundwater_params:
     
 
     coefficient = model.coef_[0]
+    print (f'{coefficient:.2f}')
     intercept = model.intercept_
-   
+    print (f'{intercept:.2f}')
    
     print()  # Print a newline 
     print(f"{param}:\n")
@@ -91,6 +93,19 @@ for param in groundwater_params:
     
     param_rainfall_values = X_test.values
     print(f"Rainfall Test Years' data: {X_test.values[0]}mm, {X_test.values[1]}mm and {X_test.values[2]}mm")
+    
+    print(f'''
+                
+    For 1st {param} Data:
+    {param} = {coefficient:.3f} * {X_test.values[0]} + {intercept:.3f} 
+
+    For 2nd {param} Data:
+    {param} = {coefficient:.3f} * {X_test.values[1]} + {intercept:.3f}
+        
+    For 3rd {param} Data:
+    {param} = {coefficient:.3f} * {X_test.values[2]} + {intercept:.3f}
+
+    ''')
     
     calculated_params = coefficient * param_rainfall_values  + intercept
     print(f"Calculated {param}:")
@@ -103,7 +118,7 @@ for param in groundwater_params:
   
   
   
-# Github link:
-# https://github.com/Vix1209/Impact-of-rainfall-on-grndwater-parameters
+# # Github link:
+# # https://github.com/Vix1209/Impact-of-rainfall-on-grndwater-parameters
 
 
